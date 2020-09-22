@@ -14,19 +14,23 @@ public class Exercise09 {
         // To find five years population for each one, just need to multiply by 5,
         // now I am using tha basic way to solve but I will find some smarter way for that later
 
-        System.out.print("Birth rate in one year = ");
-        System.out.println(((365 * (24 * 3600)) / 7.0));
+        // Updated Version
 
-        System.out.print("Death rate in one year = ");
-        System.out.println(((365 * (24 * 3600)) / 13.0));
 
-        System.out.print("Immigrant rate in one year = ");
-        System.out.println(((365 * (24 * 3600)) / 45.0));
+        /*System.out.println(((365 * (24 * 3600)) / 7.0));*/
+        double birthRate = 5 * ((365 * 24 * 3600) / 7.0);
+        System.out.println("Birth rate in five years = " + birthRate);
 
-        System.out.print("Population increase in one year = ");
-        System.out.println((4505142.857142857 + 700800.0) - 2425846.153846154);
+        /*System.out.println(((365 * (24 * 3600)) / 13.0));*/
+        double deathRate = 5 * ((365 * 24 * 3600) / 13.0);
+        System.out.println("Death rate in five years = " + deathRate);
 
-        System.out.print("Population for the next year = ");
-        System.out.println(312032486 + 2780096.7032967033);
+        /*System.out.println(((365 * (24 * 3600)) / 45.0));*/
+        double imgRate = 5 * ((365* 24 * 3600) / 45.0);
+        System.out.println("Immigrant rate in five years = " + imgRate);
+
+        /*System.out.println((4505142.857142857 + 700800.0) - 2425846.153846154);*/
+        double change = 312032486 + (2.2525714285714287E7 + 3504000.0 - 1.212923076923077E7);
+        System.out.println("Total Population with the increase in five years = " + change);
     }
 }

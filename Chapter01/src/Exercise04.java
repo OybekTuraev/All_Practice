@@ -1,8 +1,14 @@
 public class Exercise04 {
     public static void main(String[] args) {
 
-        System.out.print("Solution = ");
-        System.out.println(1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9);
+
+        /*System.out.println(1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9);*/
+
+        // Updated Version
+
+        int sum = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9;
+
+        System.out.print("Solution = " + sum);
 
     }
 }

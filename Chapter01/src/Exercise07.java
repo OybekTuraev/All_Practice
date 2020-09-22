@@ -3,10 +3,14 @@ public class Exercise07 {
 
         // Area and Perimeter of Rectangle when width = 4.5 and height = 7.9
 
-        System.out.print("Perimeter = ");
-        System.out.println(2 * (4.5 + 7.9));
+        // Updated Version
 
-        System.out.print("Area = ");
-        System.out.println(4.5 * 7.9);
+        /*System.out.println(2 * (4.5 + 7.9));*/
+        double perimeter = 2 * (4.5 + 7.9);
+        System.out.println("Perimeter = " + perimeter);
+
+        /*System.out.println(4.5 * 7.9);*/
+        double area = 4.5 * 7.9;
+        System.out.print("Area = " + area);
     }
 }

@@ -11,8 +11,12 @@ public class Exercise10 {
         // 2- all to seconds and then to hour
         // 3- V = S / t = km/h
 
-        System.out.print("Average Speed = ");
-        System.out.println((24 * 1.6) / ((3600 + 2400 + 35) / 3600.0));
+        // Updated Version
+
+
+       /* System.out.println((24 * 1.6) / ((3600 + 2400 + 35) / 3600.0));*/
+        double solution = 24 * 1.6 / ((3600 + 2400 +35) / 3600.0);
+        System.out.print("Average Speed = " + solution);
 
 
 

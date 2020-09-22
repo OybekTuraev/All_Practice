@@ -11,9 +11,11 @@ public class Exercise08 {
         // 2- minutes to seconds and seconds to hour--"t"
         // 3 - V = S / t
 
-        System.out.print("Average Speed = ");
-        System.out.println((14.0 / 1.6) / (((45.0 * 60.0) + 30.0) / 3600));
+        // Updated Version
 
+        /*System.out.println((14.0 / 1.6) / (((45.0 * 60.0) + 30.0) / 3600));*/
+        double solution = (14.0 / 1.6) / ((45.0 * 60.0 + 30.0) / 3600);
+        System.out.print("Average Speed = " + solution);
     }
 
 }
