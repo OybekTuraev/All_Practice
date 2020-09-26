@@ -1,4 +1,4 @@
-public class Exercise01 {
+public class Exercise1_03 {
     public static void main(String[] args) {
 
         //End-of-line style

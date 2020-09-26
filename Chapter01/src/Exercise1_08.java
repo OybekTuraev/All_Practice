@@ -1,4 +1,4 @@
-public class Exercise06 {
+public class Exercise1_08 {
     public static void main(String[] args) {
 
         // Area and Perimeter of the Circle when r = 5.5

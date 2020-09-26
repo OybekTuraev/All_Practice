@@ -1,4 +1,4 @@
-public class Exercise03 {
+public class Exercise1_05 {
     public static void main(String[] args) {
 
         // Always take the equations into parentheses
