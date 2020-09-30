@@ -17,8 +17,5 @@ public class Exercise1_12 {
        /* System.out.println((24 * 1.6) / ((3600 + 2400 + 35) / 3600.0));*/
         double solution = 24 * 1.6 / ((3600 + 2400 +35) / 3600.0);
         System.out.print("Average Speed = " + solution);
-
-
-
     }
 }
