@@ -17,6 +17,7 @@ public class Exercise1_11 {
         // Updated Version
 
 
+        final int currentPop = 312_032_486;
         /*System.out.println(((365 * (24 * 3600)) / 7.0));*/
         double birthRate = 5 * ((365 * 24 * 3600) / 7.0);
         System.out.println("Birth rate in five years = " + birthRate);
@@ -30,7 +31,7 @@ public class Exercise1_11 {
         System.out.println("Immigrant rate in five years = " + imgRate);
 
         /*System.out.println((4505142.857142857 + 700800.0) - 2425846.153846154);*/
-        double change = 312_032_486 + (birthRate + imgRate - deathRate);
+        double change = currentPop + (birthRate + imgRate - deathRate);
         System.out.println("Total Population with the increase in five years = " + change);
     }
 }
