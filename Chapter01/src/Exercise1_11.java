@@ -30,7 +30,7 @@ public class Exercise1_11 {
         System.out.println("Immigrant rate in five years = " + imgRate);
 
         /*System.out.println((4505142.857142857 + 700800.0) - 2425846.153846154);*/
-        double change = 312032486 + (birthRate + imgRate - deathRate);
+        double change = 312_032_486 + (birthRate + imgRate - deathRate);
         System.out.println("Total Population with the increase in five years = " + change);
     }
 }
