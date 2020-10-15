@@ -17,6 +17,6 @@ public class Exercise2_01 {
 
         System.out.printf("%.0f Celsius is %.1f Fahrenheit%n", celsius, fahrenheit);
 
-        // System.out.println(temp + " celsius is " + answer + " Fahrenheit");
+        // System.out.println(celsius + " Celsius is " + fahrenheit + " Fahrenheit");
     }
 }
