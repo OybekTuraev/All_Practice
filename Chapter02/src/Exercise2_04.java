@@ -8,14 +8,16 @@ public class Exercise2_04 {
          * One pound is 0.454 kilograms
          */
 
+        final double POUND_IN_KILO = 0.454;
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter a number in pounds: ");
         double pounds = scanner.nextDouble();
 
-        double convertKilo = pounds * 0.454;
+        double in_kilo = pounds * POUND_IN_KILO;
 
-        System.out.println(pounds + " pounds is " + convertKilo + " kilograms");
+        System.out.println(pounds + " pounds is " + in_kilo + " kilograms");
     }
 }
 
