@@ -18,14 +18,12 @@ public class Exercise2_02 {
         double area = radius * radius * Math.PI;
         double volume = area * length;
 
-        System.out.println("The area is " +  area);
-        System.out.println("The volume is " + volume);
-
-        // or USE "Printf" style Rounding for shorter digits after decimal
+        System.out.printf("The area is %.4f%n", area);
+        System.out.printf("The volume is %.1f%n", volume);
 
         /**
-         * System.out.printf("The area is %.4f\n", area);
-         * System.out.printf("The volume is %.1f\n", volume);
+         * System.out.println("The area is " +  area);
+         * System.out.println("The volume is " + volume);
          */
     }
 }
