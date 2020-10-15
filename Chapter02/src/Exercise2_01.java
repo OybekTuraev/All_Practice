@@ -11,10 +11,12 @@ public class Exercise2_01 {
         Scanner scan = new Scanner(System.in);
 
         System.out.print("Enter a degree in Celsius: ");
-        double temp = scan.nextDouble();
+        double celsius = scan.nextDouble();
 
-        double answer = (9 / 5.0) * temp + 32;
+        double fahrenheit = (9 / 5.0) * celsius + 32;
 
-        System.out.println(temp + " celsius is " + answer + " Fahrenheit");
+        System.out.printf("%.0f Celsius is %.1f Fahrenheit%n", celsius, fahrenheit);
+
+        // System.out.println(temp + " celsius is " + answer + " Fahrenheit");
     }
 }
