@@ -16,6 +16,6 @@ public class Exercise2_07 {
         int years = days / 365;
         int remainingDays = days % 365;
 
-        System.out.println(minutes + " minutes is " + years + " years " + remainingDays + " days" );
+        System.out.println(minutes + " minutes is " + years + " years and " + remainingDays + " days" );
     }
 }
