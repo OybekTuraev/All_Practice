@@ -8,6 +8,7 @@ public class Exercise3_04 {
          */
 
         Random generator = new Random();
+
         int num = (generator.nextInt(12) + 1); // 0....11,  add 1 to make 1 to 12
         System.out.print("Number of month is " + num + " and this is ");
 
