@@ -18,6 +18,9 @@ public class Exercise3_11 {
         if (month == 2 && (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)){
             System.out.println("February " + year + " had 29 days");
             }
+        else{
+            System.out.println("February " + year + " had 28 days");
+        }
 
         switch (month){
             case 1:
