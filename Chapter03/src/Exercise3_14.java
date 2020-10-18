@@ -10,13 +10,23 @@ public class Exercise3_14 {
 
         Random generator = new Random();
 
-        int gen_number = generator.nextInt(2);
+        int random_num = generator.nextInt(2);
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter 0 for head and 1 for tail for the flip of the coin: ");
         int guess = scanner.nextInt();
 
-        System.out.println((guess == gen_number) ? "Correct" : "Incorrect");
+        if (guess == 0 || guess == 1){     // check not other values
+            if (random_num == guess){
+                System.out.println("Correct");
+            }
+            else{
+                System.out.println("Incorrect");
+            }
+        }
+        else {
+            System.out.println("Invalid value");
+        }
     }
 }
