@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public interface Exercise3_25 {
+public class Exercise3_25 {
     public static void main(String[] args){
 
         /**
