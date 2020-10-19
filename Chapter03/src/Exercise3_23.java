@@ -16,7 +16,11 @@ public class Exercise3_23 {
         double x = scanner.nextDouble();
         double y = scanner.nextDouble();
 
-        if (x <= (WIDTH / 2) && y <= (HEIGHT / 2)){
+        // for negative values also, their length should be in range
+        double x_check = Math.sqrt(Math.pow(x, 2));
+        double y_check = Math.sqrt(Math.pow(y, 2));
+
+        if (x_check <= (WIDTH / 2) && y_check <= (HEIGHT / 2)){
             System.out.printf("Point (%.1f, %.1f) is in rectangle", x, y);
         }
         else{
