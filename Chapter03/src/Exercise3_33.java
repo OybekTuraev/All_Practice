@@ -20,7 +20,7 @@ public class Exercise3_33 {
         if (weight1 / weight2 == price1 / price2){
             System.out.println("Two packages have the same price.");
         }
-        // if price ratio is bigger than package is a bit expensive
+        // if price ratio is bigger then package is a bit expensive
         else if (weight1 / weight2 < price1 / price2){
             System.out.println("Package 2 has a better price.");
         }
