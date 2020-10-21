@@ -15,11 +15,28 @@ public class Exercise3_08 {
         int b = scanner.nextInt();
         int c = scanner.nextInt();
 
-        int max = Math.max(a, b);
-        int max1 = Math.max(max, c);
-        int min = Math.min(a, b);
-        int min1 = Math.min(min, c);
+        int max = 0;
+        int max1 = 0;
+        int min = 0;
 
-        System.out.println("Numbers in non-decreasing order: " + min1 + "," + max + "," + max1);
+        if (a >= b && a >= c){
+            max = a;
+            max1 = Math.max(b, c);
+            min = Math.min(b, c);
+        }
+
+        if (b >= a && b >= c){
+            max = b;
+            max1 = Math.max(a, c);
+            min = Math.min(a, c);
+        }
+
+        if (c >= a && c >= b){
+            max = c;
+            max1 = Math.max(a, b);
+            min = Math.min(a, b);
+        }
+
+        System.out.println("Numbers in non-decreasing order: " + min + " " + max1 + " " + max);
     }
 }
