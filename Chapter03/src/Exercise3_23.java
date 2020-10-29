@@ -10,21 +10,21 @@ public class Exercise3_23 {
         final double WIDTH = 10;
         final double HEIGHT = 5;
 
-        Scanner scanner  = new Scanner (System.in);
+        Scanner scanner = new Scanner (System.in);
 
         System.out.print("Enter a point with two coordinates: ");
         double x = scanner.nextDouble();
         double y = scanner.nextDouble();
 
-        // for negative values also, their length should be in range
+        // distance from point to (0;0)
         double x_check = Math.sqrt(Math.pow(x, 2));
         double y_check = Math.sqrt(Math.pow(y, 2));
 
         if (x_check <= (WIDTH / 2) && y_check <= (HEIGHT / 2)){
-            System.out.printf("Point (%.1f, %.1f) is in rectangle", x, y);
+            System.out.printf("Point (%.1f, %.1f) is in rectangle%n", x, y);
         }
         else{
-            System.out.printf("Point (%.1f, %.1f) is not in rectangle", x, y);
+            System.out.printf("Point (%.1f, %.1f) is not in rectangle%n", x, y);
         }
     }
 }
