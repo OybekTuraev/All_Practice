@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class exercise4_17 {
+public class Exercise4_17 {
     public static void main(String[] args){
 
         // Days of a month
