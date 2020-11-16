@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Exercise4_01 {
     public static void main(String[] args){
 
-
         // Geometry: area of a pentagon
 
         Scanner scanner = new Scanner(System.in);
