@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class N03 {
     public static void main(String[] args) {
 
+        //Problem 2 in Lab 05
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the number: ");
