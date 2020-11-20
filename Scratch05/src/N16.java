@@ -17,7 +17,7 @@ public class N16 {
 
         while (k <= n1 && k <= n2) {
             if (n1 % k == 0 && n2 % k == 0) {
-                gcd = k;
+                gcd = k; // k is increased and the last one will be greatest gcd
             }
             k++;
         }
