@@ -79,7 +79,7 @@ public class Exercise5_29 {
 
             System.out.println(" Sun Mon Tue Wed Thu Fri Sat");
 
-            for (int i = 0; i < day; i++){
+            for (int i = 0; i < day; i++){ // for space
                 System.out.print("    ");
             }
 
