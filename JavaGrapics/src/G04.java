@@ -2,6 +2,8 @@ import processing.core.PApplet;
 
 public class G04 extends PApplet {
 
+                                  //****      Three balls      ****//
+
     final float SIZE = 40;
     final float HALF_SIZE = SIZE / 2.0f;
     final float DISTANCE_CIRCLE = 40;
