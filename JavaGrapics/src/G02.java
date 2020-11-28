@@ -9,6 +9,7 @@ public class G02 extends PApplet {
     int x, y, first_circle_diameter, difference_of_circles, difference_of_color;
 
     public void settings(){
+
         fullScreen(); //size(1024, 600);
     }
 
