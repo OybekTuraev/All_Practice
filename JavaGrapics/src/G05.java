@@ -2,6 +2,8 @@ import processing.core.PApplet;
 
 public class G05 extends PApplet {
 
+                             // ****       Iron Mike Tyson       **** //
+
     final float DISTANCE_WORDS = 200;
     float x1, x2, x3, y1, y2, y3;
     float size1 = 40, max1 = 150, min1 = 30, speedText1 = 1;
