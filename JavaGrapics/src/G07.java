@@ -4,6 +4,8 @@ import javax.swing.*;
 
 public class G07 extends PApplet {
 
+                            //****          Moving Stars          ****//
+
     float initialAngle = 0.0f;
     float initialAngle1 = 0.0f;
     float deltaAngle = 0.09f;
