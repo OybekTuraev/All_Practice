@@ -6,8 +6,8 @@ public class G07 extends PApplet {
 
     float initialAngle = 0.0f;
     float initialAngle1 = 0.0f;
-    float deltaAngle = 0.02f;
-    float deltaAngle1 = 0.006f;
+    float deltaAngle = 0.09f;
+    float deltaAngle1 = 0.005f;
     float x, y;
     float numOuterStars;
 
@@ -35,18 +35,16 @@ public class G07 extends PApplet {
         star(8, x, y, 50, 150, initialAngle);
         initialAngle += deltaAngle;
 
-
         for (int i = 0; i < numOuterStars; i++){
 
-            float outerX = (x + cos(initialAngle1  + i) * radiusForSmallStars);
+            float outerX = (x + cos(initialAngle1 + i) * radiusForSmallStars);
             float outerY = (y + sin(initialAngle1 + i) * radiusForSmallStars);
 
-            star(8, outerX, outerY, 20, 50, initialAngle1);
+            star(8, outerX, outerY, 20, 50, initialAngle);
 
             initialAngle1 += deltaAngle1;
         }
     }
-
 
     private void star(int rayCount, float x, float y, float radius1, float radius2, float angle) {
 
