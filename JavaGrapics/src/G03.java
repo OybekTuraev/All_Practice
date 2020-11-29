@@ -33,7 +33,7 @@ public class G03 extends PApplet {
     }
 
 
-    void star(int rayCount, float x, float y, float radius1, float radius2, float angle){
+    private void star(int rayCount, float x, float y, float radius1, float radius2, float angle){
 
         float angleStep = TWO_PI / rayCount; // to increase angle every time, in equal
 
