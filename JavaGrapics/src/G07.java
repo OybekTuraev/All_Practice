@@ -49,7 +49,7 @@ public class G07 extends PApplet {
             initialAngle1 += deltaAngle2;
         }
 
-        initialAngle1 += 0.09f;
+        initialAngle1 += 0.04f;
     }
 
     private void star(int rayCount, float x, float y, float radius1, float radius2, float angle) {
