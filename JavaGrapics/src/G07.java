@@ -37,15 +37,19 @@ public class G07 extends PApplet {
         star(8, x, y, 50, 150, initialAngle);
         initialAngle += deltaAngle;
 
+        float deltaAngle2 = TWO_PI / numOuterStars;
+
         for (int i = 0; i < numOuterStars; i++){
 
-            float outerX = (x + cos(initialAngle1 + i) * radiusForSmallStars);
-            float outerY = (y + sin(initialAngle1 + i) * radiusForSmallStars);
+            float outerX = (x + cos(initialAngle1) * radiusForSmallStars);
+            float outerY = (y + sin(initialAngle1) * radiusForSmallStars);
 
             star(8, outerX, outerY, 20, 50, initialAngle);
 
-            initialAngle1 += deltaAngle1;
+            initialAngle1 += deltaAngle2;
         }
+
+        initialAngle1 += 0.09f;
     }
 
     private void star(int rayCount, float x, float y, float radius1, float radius2, float angle) {

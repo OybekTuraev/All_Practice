@@ -6,10 +6,11 @@ public class G08 extends PApplet {
 
     final float SIZE = 50;
     int column, row;
+    float mouseCoordinateX, mouseCoordinateY;
 
     public void settings(){
        size(720, 680);
-        // fullScreen();
+       //fullScreen();
     }
 
     public void setup(){
@@ -20,8 +21,7 @@ public class G08 extends PApplet {
 
     public void draw(){
 
-        background(255);
-
+        background(27, 247, 240);
 
         float fieldWidth = column * SIZE;
         float fieldHeight = row * SIZE;
@@ -32,19 +32,48 @@ public class G08 extends PApplet {
             for (int x = 0; x < column; x++){
                 float pixelX = centeringShiftX + x * SIZE;
                 float pixelY = centeringShiftY + y * SIZE;
-                fill(((x + y) % 2 == 0) ? 0 : 255, 0, 0);
+
+                fill(((x + y) % 2 == 0) ? 0 : 255);
                 square(pixelX, pixelY, SIZE);
             }
         }
 
-        centeringShiftX = (width) / 2.0f;
-        centeringShiftY = (height - fieldHeight + 70) / 2.0f;
+        if (mouseX > centeringShiftX && mouseX < centeringShiftX + fieldWidth &&
+                mouseY > centeringShiftY && mouseY < centeringShiftY + fieldHeight){
 
-        textSize(20);
-        fill(0);
-        String info = String.format("Row: %d, Column %d", mouseX, mouseY);
-        textAlign(CENTER, CENTER);
-        text(info, centeringShiftX, centeringShiftY / 2f);
+            textSize(20);
+            fill(0);
+
+            int columnNumber = ((int)(mouseX - centeringShiftX)) / ((int)SIZE); // (120 - 110) / 50 = 0
+            int rowNumber = ((int)(mouseY - centeringShiftY)) / ((int)SIZE);
+
+
+            String mouseText = String.format("Row: %d, Column %d, Color %s", rowNumber, columnNumber,
+                    fill(rowNumber, columnNumber));
+
+
+            float pixelX = centeringShiftX + columnNumber * SIZE;
+            float pixelY = centeringShiftY + rowNumber * SIZE;
+
+
+            fill(255, 0, 0, 0);
+            if (mouseX == pi)stroke(255, 0, 0);
+            square(pixelX, pixelY, SIZE);
+
+
+            textAlign(CENTER, CENTER);
+
+            mouseCoordinateX = (width) / 2.0f;                  // Location of the MouseText
+            mouseCoordinateY = (centeringShiftY - 30);
+
+            fill(0);
+            text(mouseText, mouseCoordinateX, mouseCoordinateY);
+        }
+    }
+
+    private String fill(int rowNumber, int columnNumber){
+
+        return ((rowNumber + columnNumber) % 2 == 0) ? "Black" : "White";
     }
 
     public static void main(String[] args) {
