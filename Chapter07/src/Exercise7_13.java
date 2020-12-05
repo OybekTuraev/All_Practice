@@ -13,7 +13,7 @@ public class Exercise7_13 {
 
         int randomNumber = 0;
 
-        boolean checkExcluded = true;
+        boolean checkExcluded;
 
         do {
 
