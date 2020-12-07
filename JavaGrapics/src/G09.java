@@ -64,10 +64,6 @@ public class G09 extends PApplet {
         if (y > height || y < 0){
             dy = -dy;
         }
-
-
-
-
     }
 
     public static void main(String[] args) {

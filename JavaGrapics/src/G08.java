@@ -4,35 +4,42 @@ import javax.swing.*;
 
 public class G08 extends PApplet {
 
+                              //****      Live ChessBoard         ****//
+
     final float SIZE = 50;
-    int column, row;
-    float mouseCoordinateX, mouseCoordinateY;
+    float column, row;
 
     public void settings(){
-       size(720, 680);
-       //fullScreen();
+        fullScreen();
     }
 
     public void setup(){
+        background(160, 238, 242);
 
-        row = Integer.parseInt(JOptionPane.showInputDialog("Enter the rows"));
-        column = Integer.parseInt(JOptionPane.showInputDialog("Enter the column"));
+        column = Integer.parseInt(JOptionPane.showInputDialog("Enter the column between(0:20)"));
+        row = Integer.parseInt(JOptionPane.showInputDialog("Enter the row between(0:20)"));
+
+        while (!(column > 0 && column < 20 && row > 0 && row < 20)){
+            JOptionPane.showMessageDialog(frame, "Invalid Value, Please Try Again");
+            column = Integer.parseInt(JOptionPane.showInputDialog("Enter the column between(0:20)"));
+            row = Integer.parseInt(JOptionPane.showInputDialog("Enter the row between(0:20)"));
+        }
+
     }
 
     public void draw(){
-
-        background(27, 247, 240);
+        background(160, 238, 242);
 
         float fieldWidth = column * SIZE;
         float fieldHeight = row * SIZE;
-        float centeringShiftX = (width - fieldWidth) / 2.0f;
-        float centeringShiftY = (height - fieldHeight) / 2.0f;
+        float centeringShiftX = (width - fieldWidth) / 2f;
+        float centeringShiftY = (height - fieldHeight) / 2f;
 
-        for (int y = 0; y < row; y++){
-            for (int x = 0; x < column; x++){
+        for (int x = 0; x < row; x++){
+            for (int y = 0; y < column; y++){
                 float pixelX = centeringShiftX + x * SIZE;
                 float pixelY = centeringShiftY + y * SIZE;
-                fill(((x + y) % 2 == 0) ? 0 : 255);
+                fill(((x + y) % 2 == 0 ? 0 : 255));
                 square(pixelX, pixelY, SIZE);
             }
         }
@@ -40,34 +47,32 @@ public class G08 extends PApplet {
         if (mouseX > centeringShiftX && mouseX < centeringShiftX + fieldWidth &&
                 mouseY > centeringShiftY && mouseY < centeringShiftY + fieldHeight){
 
-            textSize(20);
-            fill(0);
+            int columnNumber = ((int)(mouseX - centeringShiftX) / (int)SIZE);
+            int rowNumber = ((int)(mouseY - centeringShiftY) / (int)SIZE);
 
-            int columnNumber = ((int)(mouseX - centeringShiftX)) / ((int)SIZE); // (120 - 110) / 50 = 0
-            int rowNumber = ((int)(mouseY - centeringShiftY)) / ((int)SIZE);
-
-            String mouseText = String.format("Row: %d, Column %d, Color %s", rowNumber, columnNumber,
-                    fill(rowNumber, columnNumber));
+            String mouseText = String.format("Row: %d, Column: %d, Color: %s", rowNumber,
+                    columnNumber, fill(rowNumber, columnNumber));
 
             float pixelX = centeringShiftX + columnNumber * SIZE;
             float pixelY = centeringShiftY + rowNumber * SIZE;
 
-            fill(250, 255, 0, 0);
-            strokeWeight(4);
+            strokeWeight(5);
             stroke(255, 0, 0);
+            fill(20,0,0,0);
             square(pixelX, pixelY, SIZE);
 
-            textAlign(CENTER, CENTER);
-            mouseCoordinateX = (width) / 2.0f;                  // Location of the MouseText
-            mouseCoordinateY = (centeringShiftY - 30);
+            float mouseCoordinateX = width / 2f;
+            float mouseCoordinateY = centeringShiftY - 30;
 
-            fill(0);
             noStroke();
+            textSize(30);
+            textAlign(CENTER, CENTER);
+            fill(0);
             text(mouseText, mouseCoordinateX, mouseCoordinateY);
         }
     }
 
-    private String fill(int rowNumber, int columnNumber){
+    public String fill(int rowNumber, int columnNumber){
 
         return ((rowNumber + columnNumber) % 2 == 0) ? "Black" : "White";
     }
