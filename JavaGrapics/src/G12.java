@@ -4,21 +4,17 @@ import javax.swing.*;
 
 public class G12 extends PApplet {
 
-                                //****      Snake Game         ****//
+                         //***             Snake Game            ****//
 
-    final int FIELD_WIDTH = 20;
-    final int FIELD_HEIGHT = 20;
-    final float FIELD_CELL_SCALE = 0.8f; // how much of the window is occupied
-    float column, row;
+    int fieldWidth, fieldHeight;
+    final float FIELD_CELL_SCALE = 0.8f;
 
-    final int SNAKE_LENGTH = 10;
+    final int SNAKE_LENGTH = 1;
     int[] snakeXs = new int[SNAKE_LENGTH];
     int[] snakeYs = new int[SNAKE_LENGTH];
     int snakeHeadIndex = 0;
     int snakeDx = 1;
     int snakeDy = 0;
-
-
 
     public void settings(){
         fullScreen();
@@ -26,80 +22,113 @@ public class G12 extends PApplet {
 
     public void setup(){
         background(0);
-        strokeWeight(2);
+        strokeWeight(3);
 
+        while (true){
 
+            String s = (JOptionPane.showInputDialog("Enter the field's size(10:40)"));
+
+            if (test(s)){
+                fieldWidth = Integer.parseInt(s);
+                fieldHeight = fieldWidth;
+                break;
+            }
+
+            JOptionPane.showMessageDialog(frame, "Incorrect input: " + s);
+        }
     }
 
     public void draw(){
-        background(0    );
 
         // Field
 
-        float cellSize = min(width / FIELD_WIDTH, height / FIELD_HEIGHT) * FIELD_CELL_SCALE;
-        float fieldPixelWidth = FIELD_WIDTH * cellSize;
-        float fieldPixelHeight = FIELD_HEIGHT * cellSize;
+        float cellSize = min(width / fieldWidth, height / fieldHeight) * FIELD_CELL_SCALE;
+        float fieldPixelWidth = fieldWidth * cellSize;
+        float fieldPixelHeight = fieldHeight * cellSize;
         float cxPixelShiftX = (width - fieldPixelWidth) / 2f;
         float cxPixelShiftY = (height - fieldPixelHeight) / 2f;
 
-        stroke(0, 0, 255);
-        fill(0, 182, 189);
-        for (int y = 0; y < FIELD_HEIGHT; y++){
-            for (int x = 0; x < FIELD_WIDTH; x++){
+        stroke(0);
+        fill(0, 51, 41, 30);
+        for (int y = 0; y < fieldHeight; y++){
+            for (int x = 0; x < fieldWidth; x++){
                 float pixelX = cxPixelShiftX + x * cellSize;
                 float pixelY = cxPixelShiftY + y * cellSize;
                 square(pixelX, pixelY, cellSize);
             }
         }
 
-
         // Snake
 
         ellipseMode(CORNER);
         noStroke();
-        fill(255, 0, 0); // need to make gradient
 
+        fill(255, 0, 0);
         for (int i = 0; i < SNAKE_LENGTH; i++){
+
             float pixelX = cxPixelShiftX + snakeXs[i] * cellSize;
             float pixelY = cxPixelShiftY + snakeYs[i] * cellSize;
             circle(pixelX, pixelY, cellSize);
         }
 
-
         int snakeHeadX = snakeXs[snakeHeadIndex];
         int snakeHeadY = snakeYs[snakeHeadIndex];
-        // to start from beginning, repeating, index's max is 9, traverse
-        snakeHeadIndex = (snakeHeadIndex + 1) % SNAKE_LENGTH;
+        snakeHeadIndex = (1 + snakeHeadIndex) % SNAKE_LENGTH; // To start from beginning
 
-        snakeXs[snakeHeadIndex] = min(max(snakeHeadX + snakeDx, 0), FIELD_WIDTH - 1);
-        snakeYs[snakeHeadIndex] = min(max(snakeHeadY + snakeDy, 0), FIELD_HEIGHT - 1);
+        // To control snake Xs like if else
+        snakeXs[snakeHeadIndex] = min(max(snakeHeadX + snakeDx, 0), fieldWidth - 1);
+        snakeYs[snakeHeadIndex] = min(max(snakeHeadY + snakeDy, 0), fieldHeight - 1);
+
+        textAlign(CENTER, CENTER);
+        textSize(25);
+        float textX = width / 2f;
+        float textY = 40;
+        fill(255, 0, 0);
+        String message = "Press Arrow Buttons";
 
         if (keyPressed){
-
             switch (keyCode){
+
                 case UP:
                     snakeDx = 0;
                     snakeDy = -1;
+                    message = "YOU PRESSED: UP";
                     break;
                 case DOWN:
                     snakeDx = 0;
                     snakeDy = 1;
+                    message = "YOU PRESSED: DOWN";
                     break;
                 case LEFT:
                     snakeDx = -1;
                     snakeDy = 0;
+                    message = "YOU PRESSED: LEFT";
                     break;
                 case RIGHT:
                     snakeDx = 1;
                     snakeDy = 0;
+                    message = "YOU PRESSED: RIGHT";
                     break;
             }
         }
 
-        delay(50);
+        fill(0);
+        rect(textX - textWidth("YOU PRESSED: RIGHT") / 2, textY - 12,
+                textWidth("YOU PRESSED: RIGHT"), 25);
+        fill(255,0,0);
+        text(message, textX, textY);
+
+        delay(30);
     }
 
-
+    public boolean test(String s){
+        try {
+            Integer.parseInt(s);
+            return Integer.parseInt(s) >= 10 && Integer.parseInt(s) <= 40;
+        } catch (Exception e){
+            return false;
+        }
+    }
 
     public static void main(String[] args) {
 
