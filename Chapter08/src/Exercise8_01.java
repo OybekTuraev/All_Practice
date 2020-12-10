@@ -5,12 +5,12 @@ public class Exercise8_01 {
 
         // Sum elements column by column
 
-        double[][] array = readAInput();
+        double[][] array = readInput();
 
         showSum(array);
     }
 
-    public static double[][] readAInput(){
+    public static double[][] readInput(){
         final int ROW = 3;
         final int COLUMN = 4;
 
