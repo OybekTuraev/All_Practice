@@ -37,21 +37,22 @@ public class Exercise8_03 {
 
     public static void sort(int[] array){
 
-        for (int i = 0; i < array.length; i++){
+        for (int i = 0; i < array.length - 1; i++){
             // Finding the lowest value
-            int min = 0;
-            int minIndex = 0;
+            int min = array[i];
+            int minIndex = i;
 
-            if (min > array[i]){
-                min = array[i];
-                minIndex = i;
+            for (int j = i + 1; j < array.length; j++){
+                if (min > array[j]){
+                    min = array[j];
+                    minIndex = j;
+                }
             }
 
             //Swap
             if (minIndex != i){
-                int temp = array[i];
-                array[i] = array[minIndex];
-                array[minIndex] = temp;
+                array[minIndex] = array[i];
+                array[i] = min;
             }
         }
     }
