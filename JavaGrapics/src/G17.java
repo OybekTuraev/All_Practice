@@ -1,13 +1,13 @@
 import processing.core.PApplet;
 
-public class G15 extends PApplet {
-    final int COUNT = 200;
+public class G17 extends PApplet {
+    final int COUNT = 100;
 
-    final float START_Y_MIN = -1000;
-    final float START_Y_MAX = -100;
+    final float MIN_DX = 1;
+    final float MAX_DX = 3;
 
-    final float MIN_DY = 5;
-    final float MAX_DY = 20;
+    final float MIN_DY = 1;
+    final float MAX_DY = 3;
 
     final float MIN_DELTA_ANGLE = 0.1f;
     final float MAX_DELTA_ANGLE = 0.1f;
@@ -24,6 +24,7 @@ public class G15 extends PApplet {
     float[] deltaAngles = new float[COUNT];
 
     public void settings(){
+
         fullScreen();
     }
 
@@ -32,9 +33,9 @@ public class G15 extends PApplet {
         strokeWeight(3);
 
         for (int i = 0; i < COUNT; i++){
-            xs[i] = random(width);
-            ys[i] = random(START_Y_MIN, START_Y_MAX);
-            dxs[i] = 0;
+            xs[i] = random( width);
+            ys[i] = random( height);
+            dxs[i] = random(MIN_DX, MAX_DX);
             dys[i] = random(MIN_DY, MAX_DY);
             radii[i] = random(MIN_RADIUS, MAX_RADIUS);
             angles[i] = random(TWO_PI);
@@ -48,8 +49,8 @@ public class G15 extends PApplet {
     public void draw(){
         background(0);
         for (int i = 0; i < COUNT; i++){
-            stroke(255);
-            /*stroke(random(0, 255), random(0, 255), random(0, 255)); // TODO*/
+            stroke(random(0, 255), random(0, 255), random(0, 255)); // TODO
+            //stroke(255);
 
             float x = xs[i];
             float y = ys[i];
@@ -59,14 +60,36 @@ public class G15 extends PApplet {
 
             snowflake(8, x, y, radius1, radius2, angle);
 
-            float dy = dys[i];
-            y += dy;
+            xs[i] += dxs[i];
 
-            if (y - radius1 > height) {
-                y = random(START_Y_MIN, START_Y_MAX); // starting from the beginning again
+            if (xs[i] + radius1 > width || xs[i] - radius1 < 0){
+                dxs[i] = -dxs[i];
             }
 
-            ys[i] = y;
+            ys[i] += dys[i];
+
+            if (ys[i] + radius1 > height || ys[i] - radius1 < 0){
+                dys[i] = -dys[i];
+            }
+
+
+            /*float dx = dxs[i];
+            x += dx;*/
+
+            /*xs[i] = x;
+            if (x  > width) {
+                xs[i] = -xs[i];
+            }*/
+
+
+            /*float dy = dys[i];
+            y += dy;
+
+            if (y + radius1 > height || y - radius1 < 0) {
+                y = random(height);
+            }
+
+            ys[i] = y;*/
 
             float deltaAngle = deltaAngles[i];
             angle += deltaAngle;
@@ -92,6 +115,6 @@ public class G15 extends PApplet {
 
     public static void main(String[] args) {
 
-        PApplet.main("G15");
+        PApplet.main("G17");
     }
 }
