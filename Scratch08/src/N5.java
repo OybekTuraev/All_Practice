@@ -16,7 +16,6 @@ public class N5 {
 
         // reading from the user the points
         for (int i = 0; i < points.length; i++){
-            
             points[i][0] = scanner.nextDouble();
             points[i][1] = scanner.nextDouble();
         }

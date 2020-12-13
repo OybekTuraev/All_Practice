@@ -8,7 +8,7 @@ public class G07 extends PApplet {
 
     float initialAngle = 0.0f;
     float initialAngle1 = 0.0f;
-    float deltaAngle = 0.09f;
+    float deltaAngle = 0.07f;
     float deltaAngle1 = 0.005f;
     float x, y;
     float numOuterStars;

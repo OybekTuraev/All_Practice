@@ -31,8 +31,8 @@ public class G01 extends PApplet {
 
         //background(0);
 
-        fill(0, 0, 0, 2);   // to leave tracing
-        rect(0,0, width, height);
+        //fill(0, 0, 0, 2);   // to leave tracing
+        //rect(0,0, width, height);
 
         // Circle 1
 
