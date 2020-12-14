@@ -1,12 +1,15 @@
 import processing.core.PApplet;
 
 public class G15 extends PApplet {
-    final int COUNT = 100;
 
-    final float START_Y_MIN = -1000;
-    final float START_Y_MAX = -100;
+                          //****          Snowflakes            ****//
 
-    final float MIN_DY = 2;
+    final int COUNT = 120;
+
+    final float MIN_Y = -1000;
+    final float MAX_Y = -100;
+
+    final float MIN_DY = 1;
     final float MAX_DY = 7;
 
     final float MIN_DELTA_ANGLE = -0.1f;
@@ -24,6 +27,7 @@ public class G15 extends PApplet {
     float[] deltaAngles = new float[COUNT];
 
     public void settings(){
+
         fullScreen();
     }
 
@@ -33,8 +37,8 @@ public class G15 extends PApplet {
 
         for (int i = 0; i < COUNT; i++){
             xs[i] = random(width);
-            ys[i] = random(START_Y_MIN, START_Y_MAX);
-            dxs[i] = 0;
+            ys[i] = random(MIN_Y, MAX_Y);
+            dxs[i] =0;
             dys[i] = random(MIN_DY, MAX_DY);
             radii[i] = random(MIN_RADIUS, MAX_RADIUS);
             angles[i] = random(TWO_PI);
@@ -48,27 +52,25 @@ public class G15 extends PApplet {
     public void draw(){
         background(0);
         for (int i = 0; i < COUNT; i++){
-            stroke(255);
-            /*stroke(random(0, 255), random(0, 255), random(0, 255)); // TODO*/
+            stroke(random(0, 255), random(0, 255), random(0, 255)); // TODO
 
             float x = xs[i];
             float y = ys[i];
+            float dy = dys[i];
             float radius1 = radii[i];
             float radius2 = radii[i] * 0.7f;
             float angle = angles[i];
+            float deltaAngle = deltaAngles[i];
 
             snowflake(8, x, y, radius1, radius2, angle);
 
-            float dy = dys[i];
             y += dy;
 
-            if (y - radius1 > height) {
-                y = random(START_Y_MIN, START_Y_MAX); // starting from the beginning again
+            if (y + radius1 > height) {
+                y = random(MIN_Y, MAX_Y);
             }
-
             ys[i] = y;
 
-            float deltaAngle = deltaAngles[i];
             angle += deltaAngle;
             angles[i] = angle;
         }

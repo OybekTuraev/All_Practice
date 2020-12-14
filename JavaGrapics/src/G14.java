@@ -1,171 +1,110 @@
 import processing.core.PApplet;
 
-import javax.swing.*;
-
 public class G14 extends PApplet {
 
-                                  //****      balls      ****//
+                            //****        Random Stars       ****//
 
-    final float SIZE = 40;
-    final float HALF_SIZE = SIZE / 2.0f;
-    final float DISTANCE_CIRCLE = 28;
-    float x1, y1;
-    int number = 4, length = 4;
-    float[][] centerCoordinatesX, centerCoordinatesY;
-    float[] angle;
-    float dx, dy;
+    final int COUNT = 120;
 
+    final float MIN_DX = -2;
+    final float MAX_DX = 2;
+
+    final float MIN_DY = -2;
+    final float MAX_DY = 2;
+
+    final float MIN_RADIUS = 10;
+    final float MAX_RADIUS = 20;
+
+    float[] xs = new float[COUNT];
+    float[] ys = new float[COUNT];
+    float[] dxs = new float[COUNT];
+    float[] dys = new float[COUNT];
+    float[] radii = new float[COUNT];
+    float[] angles = new float[COUNT];
+    float[] deltaAngles = new float[COUNT];
 
     public void settings(){
+
         fullScreen();
     }
 
     public void setup(){
-        background(255);
-        noStroke();
+        background(0);
+        strokeWeight(3);
 
-        while (true){
-
-            String s = (JOptionPane.showInputDialog("Enter the number of sequence(10:40)"));
-            String s1 = (JOptionPane.showInputDialog("Enter the length of sequence(10:40)"));
-
-            if (test(s) && test(s1)){
-                number = Integer.parseInt(s);
-                length = Integer.parseInt(s1);
-                break;
-            }
-
-            JOptionPane.showMessageDialog(frame, "Incorrect input: " + s);
+        // Assign Values
+        for (int i = 0; i < COUNT; i++){
+            xs[i] = random(width);
+            ys[i] = random(height);
+            dxs[i] = random(MIN_DX, MAX_DX);
+            dys[i] = random(MIN_DY, MAX_DY);
+            radii[i] = random(MIN_RADIUS, MAX_RADIUS);
+            angles[i] = 0;
+            deltaAngles[i] = 0.02f;
         }
-
-        x1 = width / 2.0f;
-        y1 = height / 2.0f;
-        angle = new float[number];
-
-        centerCoordinatesX = new float[number][length];
-        centerCoordinatesY = new float[number][length];
-        dx = 5; dy = 5;
-
-        for (int i = 0; i < number; i++){
-            angle[i] = random(-PI, PI);
-
-
-            centerCoordinatesX[i][0] = random(0, width);
-            centerCoordinatesY[i][0] = random(0, height);
-            float distanceX = cos(angle[i]) * SIZE;
-            float distanceY = sin(angle[i]) * SIZE;
-
-            for (int j = 1; j < length; j++){
-                centerCoordinatesX[i][j] = centerCoordinatesX[i][j - 1] + distanceX;
-                centerCoordinatesY[i][j] = centerCoordinatesY[i][j - 1] + distanceY;
-            }
-        }
-
-
-        /*x2 = x1 + DISTANCE_CIRCLE;
-        y2 = y1 + DISTANCE_CIRCLE;
-
-        x3 = x1 + 2 * DISTANCE_CIRCLE;
-        y3 = y1 + 2 * DISTANCE_CIRCLE;*/
     }
 
     public void draw(){
-
         background(0);
 
-        for (int i = 0; i < number; i++){
-            for (int j = 0; j < length; j++){
+        //Rotate and Draw
+        for (int i = 0; i < COUNT; i++){
+            stroke(random(0, 255), random(0, 255), random(0, 255));
 
-                fill(2555, 0, 0);
-                circle(centerCoordinatesX[i][j], centerCoordinatesY[i][j], SIZE);
+            float radius1 = radii[i];
+            float radius2 = radii[i] * 0.9f;
+            float angle = angles[i];
+
+            pushMatrix();
+            translate(xs[i], ys[i]);
+            rotate(angles[i]);
+            angles[i] += deltaAngles[i];
+            snowflake(8, 0, 0, radius1, radius2, angle);
+            popMatrix();
+
+            //Moving the Stars
+            xs[i] += dxs[i];
+            ys[i] += dys[i];
+
+            if (xs[i] < radii[i]){
+                xs[i] = 2 * radii[i] - xs[i];
+                dxs[i] = -dxs[i];
+                deltaAngles[i] = -deltaAngles[i];
+            }
+
+            if (xs[i] + radii[i] > width){
+                xs[i] = 2 * width - xs[i] - 2 * radii[i];
+                dxs[i] = -dxs[i];
+                deltaAngles[i] = -deltaAngles[i];
+            }
+
+            if (ys[i] < radii[i]){
+                ys[i] = 2 * radii[i] - ys[i];
+                dys[i] = -dys[i];
+                deltaAngles[i] = -deltaAngles[i];
+            }
+
+            if (ys[i] + radii[i] > height){
+                ys[i] = 2 * height - ys[i] - 2 * radii[i];
+                dys[i] = -dys[i];
+                deltaAngles[i] = -deltaAngles[i];
             }
         }
-
-
-       /* for (int i = 0; i < number; i++){
-
-            centerCoordinatesX[i] = x1 + i * DISTANCE_CIRCLE;
-            centerCoordinatesY[i] = y1 + i * DISTANCE_CIRCLE;
-
-            fill(255, 0, 0);
-            circle(centerCoordinatesX[i], centerCoordinatesY[i], SIZE);
-        }
-
-        for (int i = 0; i < number; i++){
-
-            centerCoordinatesX[i][j] += dx;
-            centerCoordinatesY[i][j] += dy;
-
-            if (centerCoordinatesX[i] + HALF_SIZE > width || centerCoordinatesX[i] - HALF_SIZE < 0){
-                dx = -dx;
-            }
-            if (centerCoordinatesY[i] + HALF_SIZE > height || centerCoordinatesY[i] - HALF_SIZE < 0){
-                dy = -dy;
-            }
-        }*/
-
-
-
-
-        // circle 1
-
-        /*stroke(255, 0, 0);
-        fill(255, 0, 0,2);
-        circle(x1, y1, SIZE);
-
-        x1 += dx1; y1 += dy1;
-
-        if (x1 + HALF_SIZE > width || x1 - HALF_SIZE < 0){
-            dx1 = -dx1;
-        }
-
-        if (y1 + HALF_SIZE > height || y1 - HALF_SIZE < 0){
-            dy1 = -dy1;
-        }*/
-
-
-
-
-
-
-
-        /*// Circle 2
-
-        fill(0, 200, 250);
-        circle(x2, y2, SIZE);
-
-        x2 += dx2; y2 += dy2;
-
-        if (x2 + HALF_SIZE > width || x2 - HALF_SIZE < 0){
-            dx2 = -dx2;
-        }
-
-        if (y2 + HALF_SIZE > height || y2 - HALF_SIZE < 0){
-            dy2 = -dy2;
-        }
-
-        // circle 3
-
-        fill(120, 0, 30);
-        circle(x3, y3, SIZE);
-
-        x3 += dx3; y3 += dy3;
-
-        if (x3 + HALF_SIZE > width || x3 - HALF_SIZE < 0){
-            dx3 = -dx3;
-        }
-
-        if (y3 + HALF_SIZE > height || y3 - HALF_SIZE < 0){
-            dy3 = -dy3;
-        }*/
     }
 
-    public boolean test(String s){
-        try {
-            Integer.parseInt(s);
-            return Integer.parseInt(s) >= 10 && Integer.parseInt(s) <= 40;
-        } catch (Exception e){
-            return false;
+    public void snowflake(int rays, float x, float y, float radius1, float radius2, float angle){
+
+        float angleStep = TWO_PI / rays;
+
+        for (int i = 0; i < rays; i++){
+
+            float radius = (i % 2 == 0) ? radius2 : radius1;
+            float endX = x + cos(angle) * radius;
+            float endY = y + sin(angle) * radius;
+
+            line(x, y, endX, endY);
+
+            angle += angleStep;
         }
     }
 

@@ -1,30 +1,36 @@
+import jdk.nashorn.internal.scripts.JO;
 import processing.core.PApplet;
 
+import javax.swing.*;
+
 public class G16 extends PApplet {
-    final int COUNT = 100;
 
-    final float MIN_DX = 2;
-    final float MAX_DX = 5;
+                    //****         Random Stars with 2D array        ****//
 
-    final float MIN_DY = 1;
-    final float MAX_DY = 0;
+    final int rays = 8;
 
-    final float MIN_DELTA_ANGLE = 0.1f;
-    final float MAX_DELTA_ANGLE = 0.1f;
+    final float MIN_RADIUS = 8;
+    final float MAX_RADIUS = 15;
 
-    final float MIN_RADIUS = 5;
-    final float MAX_RADIUS = 20;
+    final float MIN_DX = -2;
+    final float MAX_DX = 2;
 
-    float[] xs = new float[COUNT];
-    float[] ys = new float[COUNT];
-    float[] dxs = new float[COUNT];
-    float[] dys = new float[COUNT];
-    float[] radii = new float[COUNT];
-    float[] angles = new float[COUNT];
-    float[] deltaAngles = new float[COUNT];
+    final float MIN_DY = -2;
+    final float MAX_DY = 2;
+
+    final float COLOR_MIN = 0;
+    final float COLOR_MAX = 255;
+
+    /*float[] x, y;
+    float[] radius;
+    float[] dx, dy;
+    float[] angle, deltaAngle;
+    float[] rc, gc, bc; // colors*/
+    int numberOfStars;
+
+    float[][] data;
 
     public void settings(){
-
         fullScreen();
     }
 
@@ -32,70 +38,111 @@ public class G16 extends PApplet {
         background(0);
         strokeWeight(3);
 
-        for (int i = 0; i < COUNT; i++){
-            xs[i] = random(width);
-            ys[i] = random(height);
-            dxs[i] = random(MIN_DX, MAX_DX);
-            dys[i] = random(MIN_DY, MAX_DY);
-            radii[i] = random(MIN_RADIUS, MAX_RADIUS);
-            angles[i] = random(TWO_PI);
-            deltaAngles[i] = random(MIN_DELTA_ANGLE, MAX_DELTA_ANGLE);
-            if (deltaAngles[i] == 0){
-                deltaAngles[i] = 0.01f;
-            }
+        // Ask from User the Input
+        numberOfStars = Integer.parseInt(JOptionPane.showInputDialog("Enter the number of Stars[10; 200]"));
+
+        // Giving the Size
+        /*x = new float[numberOfStars];
+        y = new float[numberOfStars];
+        radius = new float[numberOfStars];
+        dx = new float[numberOfStars];
+        dy = new float[numberOfStars];
+        angle = new float[numberOfStars];
+        deltaAngle = new float[numberOfStars];
+        rc = new float[numberOfStars];
+        gc = new float[numberOfStars];
+        bc = new float[numberOfStars];*/
+
+        data = new float[10][numberOfStars];
+
+        //  Assigning Random Values
+        for (int i = 0; i < numberOfStars; i++){
+            /*x[i] = random(width);
+            y[i] = random(height);
+            radius[i] = random(MIN_RADIUS, MAX_RADIUS);
+            dx[i] = random(MIN_DX, MAX_DX);
+            dy[i] = random(MIN_DY, MAX_DY);
+            rc[i] = random(COLOR_MIN, COLOR_MAX);
+            gc[i] = random(COLOR_MIN, COLOR_MAX);
+            bc[i] = random(COLOR_MIN, COLOR_MAX);
+            angle[i] = 0;
+            deltaAngle[i] = 0.03f;*/
+
+            data[0][i] = random(width);
+            data[1][i] = random(height);
+            data[2][i] = random(MIN_RADIUS, MAX_RADIUS);
+            data[3][i] = random(MIN_DX, MAX_DX);
+            data[4][i] = random(MIN_DY, MAX_DY);
+            data[5][i] = random(COLOR_MIN, COLOR_MAX);
+            data[6][i] = random(COLOR_MIN, COLOR_MAX);
+            data[7][i] = random(COLOR_MIN, COLOR_MAX);
+            data[8][i] = 0;
+            data[9][i] = 0.03f;
         }
     }
 
     public void draw(){
         background(0);
-        for (int i = 0; i < COUNT; i++){
-            stroke(random(0, 255), random(0, 255), random(0, 255)); // TODO
 
-            float x = xs[i];
-            float y = ys[i];
-            float radius1 = radii[i];
-            float radius2 = radii[i] * 0.7f;
-            float angle = angles[i];
+        for (int i = 0; i < numberOfStars; i++){
 
-            snowflake(8, x, y, radius1, radius2, angle);
+            // Rotate and Draw the stars
+            /*pushMatrix();
+            translate(x[i], y[i]);
+            rotate(angle[i]);
+            angle[i] += deltaAngle[i];
+            stars(rays, 0, 0, radius[i], angle[i], rc[i], bc[i], gc[i]);
+            popMatrix();*/
+            pushMatrix();
+            translate(data[0][i], data[1][i]);
+            rotate(data[8][i]);
+            data[8][i] += data[9][i];
+            stars(rays, 0, 0, data[2][i], data[8][i], data[5][i], data[6][i], data[7][i]);
+            popMatrix();
 
-            float dx = dxs[i];
-            x += dx;
+            // Moving the Stars
+            data[0][i] += data[3][i];
+            data[1][i] += data[4][i];
 
-            xs[i] = x;
-            if (x  > width) {
-                xs[i] = -xs[i];
+            if (data[0][i] < data[2][i]){
+                data[0][i] = 2 * data[2][i] - data[0][i];
+                data[3][i] = -data[3][i];
+                data[9][i] = -data[9][i];
             }
 
-
-            /*float dy = dys[i];
-            y += dy;
-
-            if (y + radius1 > height || y - radius1 < 0) {
-                y = random(height);
+            if (data[0][i] + data[2][i] > width){
+                data[0][i] = 2 * width - data[0][i] - 2 * data[2][i];
+                data[3][i] = -data[3][i];
+                data[9][i] = -data[9][i];
             }
 
-            ys[i] = y;*/
+            if (data[1][i] < data[2][i]){
+                data[1][i] = 2 * data[2][i] - data[1][i];
+                data[4][i] = -data[4][i];
+                data[9][i] = -data[9][i];
+            }
 
-            float deltaAngle = deltaAngles[i];
-            angle += deltaAngle;
-            angles[i] = angle;
+            if (data[1][i] + data[2][i] > height){
+                data[1][i] = 2 * height - data[1][i] - 2 * data[2][i];
+                data[4][i] = -data[4][i];
+                data[9][i] = -data[9][i];
+            }
         }
     }
 
-    public void snowflake(int rays, float x, float y, float radius1, float radius2, float angle){
+    public void stars(int rays, float x, float y,  float radius, float angle, float rc, float gc, float bc){
 
-        float angleStep = TWO_PI / rays;
+        float deltaAngle1 = TWO_PI / rays;
 
         for (int i = 0; i < rays; i++){
 
-            float radius = (i % 2 == 0) ? radius2 : radius1;
             float endX = x + cos(angle) * radius;
             float endY = y + sin(angle) * radius;
 
+            stroke(rc, gc, bc);
             line(x, y, endX, endY);
 
-            angle += angleStep;
+            angle += deltaAngle1;
         }
     }
 
