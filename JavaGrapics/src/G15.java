@@ -1,15 +1,15 @@
 import processing.core.PApplet;
 
 public class G15 extends PApplet {
-    final int COUNT = 200;
+    final int COUNT = 100;
 
     final float START_Y_MIN = -1000;
     final float START_Y_MAX = -100;
 
-    final float MIN_DY = 5;
-    final float MAX_DY = 20;
+    final float MIN_DY = 2;
+    final float MAX_DY = 7;
 
-    final float MIN_DELTA_ANGLE = 0.1f;
+    final float MIN_DELTA_ANGLE = -0.1f;
     final float MAX_DELTA_ANGLE = 0.1f;
 
     final float MIN_RADIUS = 5;

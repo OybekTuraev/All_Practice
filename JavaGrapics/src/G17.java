@@ -3,16 +3,16 @@ import processing.core.PApplet;
 public class G17 extends PApplet {
     final int COUNT = 100;
 
-    final float MIN_DX = 1;
-    final float MAX_DX = 3;
+    final float MIN_DX = -2;
+    final float MAX_DX = 2;
 
-    final float MIN_DY = 1;
-    final float MAX_DY = 3;
+    final float MIN_DY = -2;
+    final float MAX_DY = 2;
 
-    final float MIN_DELTA_ANGLE = 0.1f;
-    final float MAX_DELTA_ANGLE = 0.1f;
+    final float MIN_DELTA_ANGLE = -0.1f;
+    final float MAX_DELTA_ANGLE = 0.02f;
 
-    final float MIN_RADIUS = 5;
+    final float MIN_RADIUS = 10;
     final float MAX_RADIUS = 20;
 
     float[] xs = new float[COUNT];
@@ -33,16 +33,16 @@ public class G17 extends PApplet {
         strokeWeight(3);
 
         for (int i = 0; i < COUNT; i++){
-            xs[i] = random( width);
-            ys[i] = random( height);
+            xs[i] = random(width);
+            ys[i] = random(height);
             dxs[i] = random(MIN_DX, MAX_DX);
             dys[i] = random(MIN_DY, MAX_DY);
             radii[i] = random(MIN_RADIUS, MAX_RADIUS);
-            angles[i] = random(TWO_PI);
-            deltaAngles[i] = random(MIN_DELTA_ANGLE, MAX_DELTA_ANGLE);
-            if (deltaAngles[i] == 0){
-                deltaAngles[i] = 0.01f;
-            }
+            angles[i] = 0;
+            deltaAngles[i] = 0.02f;
+            /*if (deltaAngles[i] == 0){
+                deltaAngles[i] = 0.001f;
+            }*/
         }
     }
 
@@ -50,17 +50,53 @@ public class G17 extends PApplet {
         background(0);
         for (int i = 0; i < COUNT; i++){
             stroke(random(0, 255), random(0, 255), random(0, 255)); // TODO
-            //stroke(255);
 
-            float x = xs[i];
-            float y = ys[i];
+
+
+
+
             float radius1 = radii[i];
-            float radius2 = radii[i] * 0.7f;
+            float radius2 = radii[i] * 0.9f;
             float angle = angles[i];
 
-            snowflake(8, x, y, radius1, radius2, angle);
+            pushMatrix();
+            translate(xs[i], ys[i]);
+            rotate(angles[i]);
+            angles[i] += deltaAngles[i];
+            snowflake(8, 0, 0, radius1, radius2, angle);
+            popMatrix();
+
 
             xs[i] += dxs[i];
+            ys[i] += dys[i];
+
+            if (xs[i] < radii[i]){
+                xs[i] = 2 * radii[i] - xs[i];
+                dxs[i] = -dxs[i];
+                deltaAngles[i] = -deltaAngles[i];
+            }
+
+            if (xs[i] + radii[i] > width){
+                xs[i] = 2 * width - xs[i] - 2 * radii[i];
+                dxs[i] = -dxs[i];
+                deltaAngles[i] = -deltaAngles[i];
+            }
+
+            if (ys[i] < radii[i]){
+                ys[i] = 2 * radii[i] - ys[i];
+                dys[i] = -dys[i];
+                deltaAngles[i] = -deltaAngles[i];
+            }
+
+            if (ys[i] + radii[i] > height){
+                ys[i] = 2 * height - ys[i] - 2 * radii[i];
+                dys[i] = -dys[i];
+                deltaAngles[i] = -deltaAngles[i];
+            }
+
+
+
+            /*xs[i] += dxs[i];
 
             if (xs[i] + radius1 > width || xs[i] - radius1 < 0){
                 dxs[i] = -dxs[i];
@@ -72,28 +108,9 @@ public class G17 extends PApplet {
                 dys[i] = -dys[i];
             }
 
-
-            /*float dx = dxs[i];
-            x += dx;*/
-
-            /*xs[i] = x;
-            if (x  > width) {
-                xs[i] = -xs[i];
-            }*/
-
-
-            /*float dy = dys[i];
-            y += dy;
-
-            if (y + radius1 > height || y - radius1 < 0) {
-                y = random(height);
-            }
-
-            ys[i] = y;*/
-
             float deltaAngle = deltaAngles[i];
             angle += deltaAngle;
-            angles[i] = angle;
+            angles[i] = angle;*/
         }
     }
 
