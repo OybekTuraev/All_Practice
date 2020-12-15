@@ -10,8 +10,8 @@ public class G18 extends PApplet {
 
     float[][] x, y;
     float[] angle;
-    float dx, dy;
-    int number = 10, length = 2;
+    float[] dx, dy;
+    int number = 6, length = 20;
 
     public void settings(){
         fullScreen();
@@ -25,12 +25,15 @@ public class G18 extends PApplet {
         x = new float[number][length];
         y = new float[number][length];
         angle = new float[number];
-        dx = 5; dy = 5;
+        dx = new float[number];
+        dy = new float[number];
 
         // Assigning Values
         for (int i = 0; i < number; i++){
             x[i][0] = random(0, width);
             y[i][0] = random(0, height);
+            dx[i] = random(1, 4);
+            dy[i] = random(1, 4);
             float distanceX = cos(angle[i]) * SIZE;
             float distanceY = sin(angle[i]) * SIZE;
             angle[i] = random(-PI, PI);
@@ -51,39 +54,32 @@ public class G18 extends PApplet {
 
                 fill(255, 0, 0);
                 circle(x[i][j], y[i][j], SIZE);
+
+                x[i][j] += dx[i];
+                y[i][j] += dy[i];
+
+                if (x[i][j] < 0){
+                    x[i][j] =  - x[i][j];
+                    dx[i] = -dx[i];
+                }
+
+                if (x[i][j] + SIZE > width){
+                    x[i][j] = -x[i][j];
+                    dx[i] = -dx[i];
+                }
+
+                if (y[i][j] < 0){
+                    y[i][j] = - y[i][j];
+                    dy[i] = -dy[i];
+                }
+
+                if (y[i][j] + SIZE > height){
+                    x[i][j] = - y[i][j];
+                    dy[i] = -dy[i];
+                }
+
             }
         }
-
-
-
-
-
-
-
-
-
-        /*for (int i = 0; i < number; i++){
-
-            centerCoordinatesX[i] = x1 + i * DISTANCE_CIRCLE;
-            centerCoordinatesY[i] = y1 + i * DISTANCE_CIRCLE;
-
-            fill(255, 0, 0);
-            circle(centerCoordinatesX[i], centerCoordinatesY[i], SIZE);
-        }
-
-        for (int i = 0; i < number; i++){
-
-            centerCoordinatesX[i][j] += dx;
-            centerCoordinatesY[i][j] += dy;
-
-            if (centerCoordinatesX[i] + HALF_SIZE > width || centerCoordinatesX[i] - HALF_SIZE < 0){
-                dx = -dx;
-            }
-            if (centerCoordinatesY[i] + HALF_SIZE > height || centerCoordinatesY[i] - HALF_SIZE < 0){
-                dy = -dy;
-            }
-        }*/
-
     }
 
     public static void main(String[] args) {
