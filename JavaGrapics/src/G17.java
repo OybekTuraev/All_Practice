@@ -4,69 +4,108 @@ import javax.swing.*;
 
 public class G17 extends PApplet {
 
-                        //****          Alone Snake Ball           ****//
+           //  Not Yet Complete           //****      Alone Snake Ball       ****//
 
-    final float SIZE = 30;
-    final float HALF_SIZE = SIZE / 2f;
-    int MAX_OPACITY = 255;
-    float x,y;
-    float[] allX, allY, allDy, allDx, opacity;
-    int number;
+    final int SIZE = 40;
+    final int NUMBER_SEQUENCE = 1;
+
+    float[][] x, y;
+    float[][] dx, dy;
+    float[] distanceX, distanceY, opacity;
+    int distanceK, length;
+    float maxOpacity = 255;
 
     public void settings(){
         fullScreen();
     }
 
     public void setup(){
+        background(0);
+        noStroke();
 
-        number = Integer.parseInt(JOptionPane.showInputDialog("Enter the number of sequences[10:40]"));
+        length = Integer.parseInt(JOptionPane.showInputDialog("Enter the length of sequence"));
 
-        x = 450;
-        y = 500;
+        // Giving the Sizes
+        x = new float[NUMBER_SEQUENCE][length];
+        y = new float[NUMBER_SEQUENCE][length];
 
-        allX = new float[number];
-        allY = new float[number];
-        allDx = new float[number];
-        allDy = new float[number];
-        opacity = new float[number];
+        dx = new float[NUMBER_SEQUENCE][length];
+        dy = new float[NUMBER_SEQUENCE][length];
+        distanceX = new float[NUMBER_SEQUENCE];
+        distanceY = new float[NUMBER_SEQUENCE];
+        opacity = new float[length];
 
-        for (int i = 0; i < number; i++){
+        // Assigning Values
+        for (int i = 0; i < NUMBER_SEQUENCE; i++){
+            x[i][0] = (int) random(SIZE, width - SIZE);
+            y[i][0] = (int) random(SIZE, height - SIZE);
+            dx[i][0] = 3;
+            dy[i][0] = 3;
 
-            allX[i] = x;
-            allY[i] = y;
+            distanceK = (int)(SIZE / Math.sqrt(sq(dx[i][0]) + sq(dy[i][0])));
 
-            x = x - cos(PI / 4) * SIZE;
-            y = y - sin(PI / 4) * SIZE;
+            distanceX[i] = dx[i][0] * distanceK;
+            distanceY[i] = dy[i][0] * distanceK;
+        }
 
-            allDx[i] = 2;
-            allDy[i] = 2;
-            opacity[i] = MAX_OPACITY;
+        for (int i = 0; i < NUMBER_SEQUENCE; i++){
+            for (int j = 1; j < length; j++){
 
-            MAX_OPACITY -= 10;
+                x[i][j] = x[i][j - 1] - distanceX[i];
+                y[i][j] = y[i][j - 1] - distanceY[i];
+
+                dx[i][j] = dx[i][j - 1];
+                dy[i][j] = dy[i][j - 1];
+
+                opacity[j] = maxOpacity;
+                maxOpacity -= 10;
+
+                if (x[i][j] < 0){
+                    distanceX[i] = -distanceX[i];
+                    dx[i][j] = -dx[i][j];
+                    x[i][j] =  - x[i][j];
+                }
+                else if (x[i][j] > width){
+                    distanceX[i] = -distanceX[i];
+                    dx[i][j] = -dx[i][j];
+                    x[i][j] = (2 * width - x[i][j]);
+                }
+
+                if (y[i][j] < 0){
+                    distanceY[i] = -distanceY[i];
+                    dy[i][j] = -dy[i][j];
+                    y[i][j] =  - y[i][j];
+                }
+                else if (y[i][j] > height){
+                    distanceY[i] = -distanceY[i];
+                    dy[i][j] = -dy[i][j];
+                    y[i][j] = (2 * height - y[i][j]);
+                }
+            }
         }
     }
 
     public void draw(){
-        background(0);
 
-        for (int i = 0; i < number; i++){
+        fill(0,50);
+        rect(0, 0, width, height);
 
-            pushMatrix();
-            translate(allX[i], allY[i]);
-            noStroke();
-            fill(255, opacity[i]);
-            circle(0,0, SIZE);
-            popMatrix();
+        for (int i = 0; i < NUMBER_SEQUENCE; i++){
+            for (int j = 0; j < length; j++){
 
-            allX[i] += allDx[i];
-            allY[i] += allDy[i];
+                fill(255, 0, 0);
+                circle(x[i][j], y[i][j], SIZE);
 
-            if (allX[i] + HALF_SIZE > width || allX[i] - HALF_SIZE < 0){
-                allDx[i] = - allDx[i];
-            }
+                x[i][j] += dx[i][j];
+                y[i][j] += dy[i][j];
 
-            if (allY[i] + HALF_SIZE > height || allY[i] - HALF_SIZE < 0){
-                allDy[i] = - allDy[i];
+                if (x[i][j] < 0 || x[i][j] > width){
+                    dx[i][j] = -dx[i][j];
+                }
+
+                if (y[i][j] < 0 || y[i][j] > height){
+                    dy[i][j] = -dy[i][j];
+                }
             }
         }
     }

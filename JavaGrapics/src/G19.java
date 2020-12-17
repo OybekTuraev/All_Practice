@@ -48,7 +48,7 @@ public class G19 extends PApplet {
 
             //float distanceY = sin(angle[i]) * SIZE;	// also try using int on distanceX, distanceY
 
-            //angle[i] = random(-PI, PI); // you first use angle[i] and then assign some value? then u never use angle[i] again
+             //angle[i] = random(-PI, PI); // you first use angle[i] and then assign some value? then u never use angle[i] again
             // you don't need it. Delete.
 
             for (int j = 1; j < length; j++){ // very good!
@@ -70,8 +70,6 @@ public class G19 extends PApplet {
                 if (y[i][j] > height || y[i][j] < 0){
                     y[i][j] = -y[i][j];
                 }
-
-
             }
         }
     }
