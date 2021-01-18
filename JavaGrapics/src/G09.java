@@ -10,6 +10,7 @@ public class G09 extends PApplet {
     float distance, sizeOfSmall;
     float angle;
     float deltaAngle;
+
     float dx = 4, dy = 1;
 
     public void settings(){

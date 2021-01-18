@@ -39,8 +39,8 @@ public class G17 extends PApplet {
         for (int i = 0; i < NUMBER_SEQUENCE; i++){
             x[i][0] = (int) random(SIZE, width - SIZE);
             y[i][0] = (int) random(SIZE, height - SIZE);
-            dx[i][0] = 3;
-            dy[i][0] = 3;
+            dx[i][0] = random(1, 3);
+            dy[i][0] = random(1, 3);
 
             distanceK = (int)(SIZE / Math.sqrt(sq(dx[i][0]) + sq(dy[i][0])));
 
@@ -99,12 +99,22 @@ public class G17 extends PApplet {
                 x[i][j] += dx[i][j];
                 y[i][j] += dy[i][j];
 
-                if (x[i][j] < 0 || x[i][j] > width){
+                if (x[i][j] < 0){
                     dx[i][j] = -dx[i][j];
+                    x[i][j] =  - x[i][j];
+                }
+                else if (x[i][j] > width){
+                    dx[i][j] = -dx[i][j];
+                    x[i][j] = (2 * width - x[i][j]);
                 }
 
-                if (y[i][j] < 0 || y[i][j] > height){
+                if (y[i][j] < 0){
                     dy[i][j] = -dy[i][j];
+                    y[i][j] =  - y[i][j];
+                }
+                else if (y[i][j] > height){
+                    dy[i][j] = -dy[i][j];
+                    y[i][j] = (2 * height - y[i][j]);
                 }
             }
         }
