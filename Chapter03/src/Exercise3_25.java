@@ -19,7 +19,7 @@ public class Exercise3_25 {
         double x4 = scanner.nextDouble();
         double y4 = scanner.nextDouble();
 
-        // Finding the values with Cramel's rule
+        // Finding the values with Cramer's rule
 
         double a = y1 - y2;
         double b = -1 * (x1 - x2);
