@@ -4,7 +4,8 @@ import javax.swing.*;
 
 public class G18 extends PApplet {
 
-       // Not Yet Complete              //****      Snake Balls       ****//
+                         //****      Snake Balls       ****//
+    // Not Yet Complete , problems with the color
 
     final int SIZE = 40;
     final float MAX_COLOR = 255f;
@@ -43,12 +44,16 @@ public class G18 extends PApplet {
             dy[i][0] = random(1, 4);
             color = MAX_COLOR / number;
 
+            // somehow unclear with math part, it's k, distance between balls
             distanceK = (int)(SIZE / Math.sqrt(sq(dx[i][0]) + sq(dy[i][0])));
+            // way of Pavel, not working here with multiple snakes
+            //distanceK = (int) (SIZE / (2.2 * Math.sqrt(2)));
 
             distanceX[i] = dx[i][0] * distanceK;
             distanceY[i] = dy[i][0] * distanceK;
         }
 
+        // while constructing snakes, taking care about borders
         for (int i = 0; i < number; i++){
             for (int j = 1; j < length; j++){
 
@@ -59,14 +64,14 @@ public class G18 extends PApplet {
                 dy[i][j] = dy[i][j - 1];
 
                 if (x[i][j] < 0){
-                    distanceX[i] = -distanceX[i];
+                    distanceX[i] = -distanceX[i]; // why?
                     dx[i][j] = -dx[i][j];
                     x[i][j] =  - x[i][j];
                 }
                 else if (x[i][j] > width){
                     distanceX[i] = -distanceX[i];
                     dx[i][j] = -dx[i][j];
-                    x[i][j] = (2 * width - x[i][j]);
+                    x[i][j] = (2 * width - x[i][j]);// cannot get the point here
                 }
 
                 if (y[i][j] < 0){
@@ -84,24 +89,25 @@ public class G18 extends PApplet {
     }   
 
     public void draw(){
+        background(0);
 
-        fill(0, 30);
+       /* fill(0, 25);
         rect(0, 0, width, height);
-
+*/
         for (int i = 0; i < number; i++){
             for (int j = 0; j < length; j++){
 
                 // Color
                 if (i % 3 == 0){
-                    fill(255 - color * j, 0, 0);
+                    fill(255 - color * j, 0, 0, (length - j) * (255f / length));
                 }
 
                 else if (i % 3 == 1){
-                    fill(0, 255 - color * j, 0);
+                    fill(0, 255 - color * j, 0, (length - j) * (255f / length));
                 }
 
                 else {
-                    fill(0, 0, 255 - color * j);
+                    fill(0, 0, 255 - color * j, (length - j) * (255f / length));
                 }
 
                 circle(x[i][j], y[i][j], SIZE);

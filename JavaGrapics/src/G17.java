@@ -4,7 +4,8 @@ import javax.swing.*;
 
 public class G17 extends PApplet {
 
-           //  Not Yet Complete           //****      Alone Snake Ball       ****//
+                     //****      Alone Snake Ball       ****//
+    //  Not Yet Complete, problems with color
 
     final int SIZE = 40;
     final int NUMBER_SEQUENCE = 1;
@@ -42,7 +43,10 @@ public class G17 extends PApplet {
             dx[i][0] = random(1, 3);
             dy[i][0] = random(1, 3);
 
-            distanceK = (int)(SIZE / Math.sqrt(sq(dx[i][0]) + sq(dy[i][0])));
+            // here need to think
+            //distanceK = (int)(SIZE / Math.sqrt(sq(dx[i][0]) + sq(dy[i][0])));
+            // way of Pavel
+            distanceK = (int) (SIZE / (2.1f * Math.sqrt(2)));
 
             distanceX[i] = dx[i][0] * distanceK;
             distanceY[i] = dy[i][0] * distanceK;
@@ -68,7 +72,7 @@ public class G17 extends PApplet {
                 else if (x[i][j] > width){
                     distanceX[i] = -distanceX[i];
                     dx[i][j] = -dx[i][j];
-                    x[i][j] = (2 * width - x[i][j]);
+                    x[i][j] = (2 * width - x[i][j]); // cannot get the point here
                 }
 
                 if (y[i][j] < 0){
@@ -87,13 +91,15 @@ public class G17 extends PApplet {
 
     public void draw(){
 
-        fill(0,50);
-        rect(0, 0, width, height);
+        /*fill(0,50);
+        rect(0, 0, width, height);*/
+        background(0);
 
         for (int i = 0; i < NUMBER_SEQUENCE; i++){
             for (int j = 0; j < length; j++){
 
-                fill(255, 0, 0);
+
+                fill(255, 0, 0,  (length - j) * (255.0f / length));
                 circle(x[i][j], y[i][j], SIZE);
 
                 x[i][j] += dx[i][j];
@@ -105,7 +111,7 @@ public class G17 extends PApplet {
                 }
                 else if (x[i][j] > width){
                     dx[i][j] = -dx[i][j];
-                    x[i][j] = (2 * width - x[i][j]);
+                    x[i][j] = (2 * width - x[i][j]); // cannot get the point here
                 }
 
                 if (y[i][j] < 0){
