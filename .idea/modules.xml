@@ -12,12 +12,14 @@
       <module fileurl="file://$PROJECT_DIR$/Chapter07/Chapter07.iml" filepath="$PROJECT_DIR$/Chapter07/Chapter07.iml" />
       <module fileurl="file://$PROJECT_DIR$/Chapter08/Chapter08.iml" filepath="$PROJECT_DIR$/Chapter08/Chapter08.iml" />
       <module fileurl="file://$PROJECT_DIR$/Chapter09/Chapter09.iml" filepath="$PROJECT_DIR$/Chapter09/Chapter09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Chapter10/Chapter10.iml" filepath="$PROJECT_DIR$/Chapter10/Chapter10.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaGrapics/JavaGrapics.iml" filepath="$PROJECT_DIR$/JavaGrapics/JavaGrapics.iml" />
       <module fileurl="file://$PROJECT_DIR$/Scratch05/Scratch05.iml" filepath="$PROJECT_DIR$/Scratch05/Scratch05.iml" />
       <module fileurl="file://$PROJECT_DIR$/Scratch06/Scratch06.iml" filepath="$PROJECT_DIR$/Scratch06/Scratch06.iml" />
       <module fileurl="file://$PROJECT_DIR$/Scratch07/Scratch07.iml" filepath="$PROJECT_DIR$/Scratch07/Scratch07.iml" />
       <module fileurl="file://$PROJECT_DIR$/Scratch08/Scratch08.iml" filepath="$PROJECT_DIR$/Scratch08/Scratch08.iml" />
       <module fileurl="file://$PROJECT_DIR$/Scratch09/Scratch09.iml" filepath="$PROJECT_DIR$/Scratch09/Scratch09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Scratch10/Scratch10.iml" filepath="$PROJECT_DIR$/Scratch10/Scratch10.iml" />
     </modules>
   </component>
 </project>
