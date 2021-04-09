@@ -18,7 +18,8 @@ public class Exception3 {
             System.out.println(s.charAt(3));
         }
         catch (RuntimeException ex) {
-            System.out.println("RuntimeException in method"); // handle it here, if cannot pass it to the main
+            // handle it here, if cannot pass it to the main
+            System.out.println("RuntimeException in method");
         }
         catch (Exception ex) {
             System.out.println("Exception in method");

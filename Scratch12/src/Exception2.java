@@ -1,6 +1,6 @@
 public class Exception2 {
     public static void main(String[] args) {
-         /*  try {
+           try {
             int value = 100;
             if (value < 40) {
                 throw new Exception("value is too small");
@@ -8,7 +8,7 @@ public class Exception2 {
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
         }
-        System.out.println("Continue after the catch block");*/
+        System.out.println("Continue after the catch block");
 
         try {
             for (int i = 0; i < 2; i++) {
