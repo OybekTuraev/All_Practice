@@ -14,10 +14,10 @@ public class Exercise9_07 {
 }
 
 class Account {
-    private int id;
-    private double balance;
-    private double annualInterestRate;
-    private Date dateCreated;
+    protected int id;
+    protected double balance;
+    protected double annualInterestRate;
+    protected Date dateCreated;
 
     Account() {
     }

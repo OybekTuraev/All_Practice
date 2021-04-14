@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class GeometricObject {
     protected String color = "white";
-    protected boolean filled;
-    protected Date dateCreated;
+    private boolean filled;
+    private Date dateCreated;
 
     public GeometricObject() {
         dateCreated = new Date();
@@ -20,15 +20,15 @@ public class GeometricObject {
         return color;
     }
 
-    protected void setColor(String color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
-    protected boolean isFilled() {
+    public boolean isFilled() {
         return filled;
     }
 
-    protected void setFilled(boolean filled) {
+    public void setFilled(boolean filled) {
         this.filled = filled;
     }
 
