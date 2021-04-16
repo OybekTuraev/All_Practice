@@ -1,13 +1,13 @@
-public class CircleWithException {
+public class CircleWithExceptionChecked {
     private double radius;
     private static int numberOfObjects = 0;
 
     /** Construct a circle with radius 1 */
-    public CircleWithException() {
+    public CircleWithExceptionChecked() throws InvalidRadiusException {
         this(1.0);
     }
 
-    public CircleWithException(double radius) {
+    public CircleWithExceptionChecked(double radius) throws InvalidRadiusException {
         setRadius(radius);
         numberOfObjects++;
     }
@@ -16,12 +16,12 @@ public class CircleWithException {
         return radius;
     }
 
-    public void setRadius(double radius) throws IllegalArgumentException { // declare an exception
-        if (radius >= 0) {
-            this.radius = radius;
+    public void setRadius(double newRadius) throws InvalidRadiusException { // declare an exception
+        if (newRadius >= 0) {
+            radius = newRadius;
         }
         else {
-            throw new IllegalArgumentException("Radius cannot be negative"); // throw an exception
+            throw new InvalidRadiusException(newRadius); // throw an exception
         }
     }
 
