@@ -6,7 +6,7 @@ public class CalculatorWithException {
         // Calculator
         if (args.length != 3){
             System.out.println("Usage: java Calculator operand1 operator operand2");
-            System.exit(0);
+            System.exit(1);
         }
 
         int operationResult = 0;
