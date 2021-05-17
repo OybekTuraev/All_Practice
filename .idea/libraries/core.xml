@@ -1,23 +1,23 @@
 <component name="libraryTable">
   <library name="core">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/core.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/gluegen-rt-natives-linux-aarch64.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/gluegen-rt-natives-linux-amd64.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/gluegen-rt-natives-linux-armv6hf.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/gluegen-rt-natives-linux-i586.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/gluegen-rt-natives-macosx-universal.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/gluegen-rt-natives-windows-amd64.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/gluegen-rt-natives-windows-i586.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/gluegen-rt.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/jogl-all-natives-linux-aarch64.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/jogl-all-natives-linux-amd64.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/jogl-all-natives-linux-armv6hf.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/jogl-all-natives-linux-i586.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/jogl-all-natives-macosx-universal.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/jogl-all-natives-windows-amd64.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/jogl-all-natives-windows-i586.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev/lib/jogl-all.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/gluegen-rt-natives-linux-aarch64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/gluegen-rt-natives-linux-amd64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/gluegen-rt-natives-linux-armv6hf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/gluegen-rt-natives-linux-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/gluegen-rt-natives-macosx-universal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/gluegen-rt-natives-windows-amd64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/gluegen-rt-natives-windows-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/gluegen-rt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/jogl-all-natives-linux-aarch64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/jogl-all-natives-linux-amd64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/jogl-all-natives-linux-armv6hf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/jogl-all-natives-linux-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/jogl-all-natives-macosx-universal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/jogl-all-natives-windows-amd64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/jogl-all-natives-windows-i586.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../course-directory-OybekTuraev_Fall_2020/lib/jogl-all.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
