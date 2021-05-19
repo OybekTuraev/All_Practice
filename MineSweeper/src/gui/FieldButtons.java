@@ -261,24 +261,10 @@ public class FieldButtons {
 
     void draw() {
         if (currentState == ButtonState.Normal) {
-            applet.fill(backgroundColor);
+            applet.fill(255, 30, 50);
             applet.rect(x, y, width, height);
-
-            /*if (backgroundImage != null) {
+            if (backgroundImage != null) {
                 applet.image(backgroundImage, x, y, width, height);
-            }*/
-
-            if (icon != null) {
-                float iconX = x + (width - icon.width) * 0.5f;
-                float iconY = y + (height - icon.height) * 0.5f;
-                applet.image(icon, iconX, iconY);//TODO
-            }
-
-            if (!label.isEmpty()) {
-                applet.fill(labelColor);
-                applet.textAlign(applet.CENTER, applet.CENTER);
-                applet.textSize(fontSize);
-                applet.text(label, x + width / 2, y + height / 2);
             }
         }
         else if (currentState == ButtonState.Hover) {
@@ -290,29 +276,10 @@ public class FieldButtons {
             else if (backgroundImage != null) {
                 applet.image(backgroundImage, x, y, width, height);
             }
-
-            if (iconHover != null) {
-                float iconX = x + (width - icon.width) * 0.5f;
-                float iconY = y + (height - icon.height) * 0.5f;
-                applet.image(iconHover, iconX, iconY);
-            }
-            else if (icon != null) {
-                float iconX = x + (width - icon.width) * 0.5f;
-                float iconY = y + (height - icon.height) * 0.5f;
-                applet.image(icon, iconX, iconY);
-            }
-
-            if (!label.isEmpty()) {
-                applet.fill(labelColorHover);
-                applet.textAlign(applet.CENTER, applet.CENTER);
-                applet.textSize(fontSize);
-                applet.text(label, x + width / 2, y + height / 2);
-            }
         }
         else if (currentState == ButtonState.Active) {
             applet.fill(backgroundColorHover);
             applet.rect(x, y, width, height);
-            //backgroundImageActive = applet.loadImage("rectangle.png");
             if (backgroundImageActive != null) {
                 applet.image(backgroundImageActive, x, y, width, height);
             }
@@ -320,23 +287,6 @@ public class FieldButtons {
                 applet.image(backgroundImage, x, y, width, height);
             }
 
-            if (iconActive != null) {
-                float iconX = x + (width - icon.width) * 0.5f;
-                float iconY = y + (height - icon.height) * 0.5f;
-                applet.image(iconActive, iconX, iconY);
-            }
-            else if (icon != null) {
-                float iconX = x + (width - icon.width) * 0.5f;
-                float iconY = y + (height - icon.height) * 0.5f;
-                applet.image(icon, iconX, iconY);
-            }
-
-            if (!label.isEmpty()) {
-                applet.fill(labelColorActive);
-                applet.textAlign(applet.CENTER, applet.CENTER);
-                applet.textSize(fontSize);
-                applet.text(label, x + width / 2, y + height / 2);
-            }
         }
     }
 

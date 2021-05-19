@@ -1,6 +1,7 @@
 package gui;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class Field {
 
     private static final int SIZE = 20;
 
-    private static final char MINE_CELL = '*';
+    private static final PImage MINE_CELL = null;
     private static final char EMPTY_CELL = '.';
     private static final char COVERED_CELL = '#';
 
@@ -69,6 +70,14 @@ public class Field {
         return field[selY][selX];
     }
 
+    int getMINE_VAL() {
+        return MINE_VAL;
+    }
+
+    int getEMPTY_VAL() {
+        return EMPTY_VAL;
+    }
+
     void setUncoveredFieldToTrue(int selX, int selY) {
         uncoveredField[selY][selX] = true;
     }
@@ -106,14 +115,14 @@ public class Field {
         }
     }
 
-    void setMinesAtRandom(int selX, int selY) {
+    void setMinesAtRandom(float selX, float selY) {
         ArrayList<Integer[]> potentialMinePlaces = new ArrayList<>();
         for (int y = 0; y < height; y++) {
             outer:
             for (int x = 0; x < width; x++) {
                 for (int i = 0; i < SHIFTS[0].length; i++) {
-                    int ny = selY + SHIFTS[0][i];
-                    int nx = selX + SHIFTS[1][i];
+                    int ny = (int) (selY + SHIFTS[0][i]);
+                    int nx = (int) (selX + SHIFTS[1][i]);
                     if (x == nx && y == ny) {
                         break outer;
                     }
@@ -144,10 +153,10 @@ public class Field {
         return x >= 0 && x < width && y >= 0 && y < height;
     }
 
-    void floodUncover(int selX, int selY) {
+    void floodUncover(float selX, float selY) {
         for (int i = 0; i < SHIFTS[0].length; i++) {
-            int ny = selY + SHIFTS[0][i];
-            int nx = selX + SHIFTS[1][i];
+            int ny = (int) (selY + SHIFTS[0][i]);
+            int nx = (int) (selX + SHIFTS[1][i]);
             if (containCoordinates(nx, ny) && !uncoveredField[ny][nx]) {
                 uncoveredField[ny][nx] = true;
                 if (field[ny][nx] == EMPTY_VAL) {
@@ -163,17 +172,41 @@ public class Field {
                 if (uncoveredField[y][x]) {
                     int cell = field[y][x];
                     if (cell == MINE_VAL) {
-                        System.out.print(MINE_CELL);
+                        applet.image(applet.loadImage("bomb.jpg"), x, y, width, height);
                     } else if (cell == EMPTY_VAL) {
-                        System.out.print(EMPTY_CELL);
+                        applet.image(applet.loadImage("rectangle.jpg"), x, y, width, height);
                     } else {
-                        System.out.print(cell);
+                        switch (cell) {
+                            case 1:
+                                applet.image(applet.loadImage("1.jpg"), x, y, width, height);
+                                break;
+                            case 2:
+                                applet.image(applet.loadImage("2.jpg"), x, y, width, height);
+                                break;
+                            case 3:
+                                applet.image(applet.loadImage("3.jpg"), x, y, width, height);
+                                break;
+                            case 4:
+                                applet.image(applet.loadImage("4.jpg"), x, y, width, height);
+                                break;
+                            case 5:
+                                applet.image(applet.loadImage("5.jpg"), x, y, width, height);
+                                break;
+                            case 6:
+                                applet.image(applet.loadImage("6.jpg"), x, y, width, height);
+                                break;
+                            case 7:
+                                applet.image(applet.loadImage("7.jpg"), x, y, width, height);
+                                break;
+                            case 8:
+                                applet.image(applet.loadImage("8.jpg"), x, y, width, height);
+                                break;
+                        }
                     }
                 } else {
-                    System.out.print(COVERED_CELL);
+                    applet.image(applet.loadImage("rectangle.jpg"), x, y, width, height);
                 }
             }
-            System.out.println();
         }
     }
 
@@ -206,6 +239,8 @@ public class Field {
         }
         return countFalse == mines;
     }
+
+
 }
 
 

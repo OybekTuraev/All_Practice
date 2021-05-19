@@ -16,6 +16,7 @@ public class MinesweeperGUI extends PApplet {
     private CommandButtons iconB;
     private FieldButtons button;
     private boolean once = true;
+    private boolean isFirstClick = false;
 
     enum Difficulty {
         Beginner, Intermediate, Expert
@@ -68,8 +69,8 @@ public class MinesweeperGUI extends PApplet {
         time.setXAndY(buttonX, buttonY);
 
         iconB = new CommandButtons(this, iconX, iconY, "", 25, 30);
-        iconB.setIconNormal(loadImage("normal.png"));
-        iconB.setIconHover(loadImage("hover.png"));
+        iconB.setIconNormal(loadImage("smileStart.png"));
+        iconB.setIconHover(loadImage("smileRestart.png"));
 
         beginnerB = new CommandButtons(this,  buttonX, buttonY, "beginner", 160, 30);
         beginnerB.setActive(true);
@@ -87,14 +88,13 @@ public class MinesweeperGUI extends PApplet {
             float fy = location[1];
             button = new FieldButtons(this, "", fx, fy, SIZE, SIZE);
             buttons.add(button);
-            /*button.setBackgroundImage(loadImage("rectangle.png"));
-            button.setBackgroundImageHover(button.getBackgroundImage());*/
         }
+
+
     }
 
     public void draw() {
         background(255);
-
         if (currentDifficulty == Difficulty.Beginner) {
             level = 1;
         }
@@ -116,9 +116,13 @@ public class MinesweeperGUI extends PApplet {
         iconB.draw();
 
         for (FieldButtons button : buttons) {
-            /*button.setBackgroundImage(loadImage("rectangle.png"));
-            button.setBackgroundImageHover(loadImage("over.png"));*/
             button.draw();
+        }
+
+
+        if (isFirstClick) {
+            field.present();
+
         }
     }
 
@@ -152,6 +156,12 @@ public class MinesweeperGUI extends PApplet {
                 for (FieldButtons button : buttons) {
                     if (button.containCoordinates(mouseX, mouseY)) {
                         button.mousePressed();
+                        if (!isFirstClick) {
+                            field.setMinesAtRandom(button.getX(), button.getY());
+                            System.out.println(button.getX() + " " + button.getY());
+                            field.floodUncover(button.getX(), button.getY());
+                        }
+                        isFirstClick = true;
                     }
                 }
             }
@@ -186,6 +196,35 @@ public class MinesweeperGUI extends PApplet {
                 button.mouseMoved();
             }
         }*/
+    }
+
+    void continuePlay(int selX, int selY) {
+        boolean lost = false;
+        boolean won = false;
+
+        int cell = field.getField(selX, selY);
+        if (cell == field.getMINE_VAL()) {
+            field.setUncoveredFieldToTrue(selX, selY);
+            lost = true;
+        } else if (cell == field.getEMPTY_VAL()) {
+            field.floodUncover(selX, selY);
+        } else {
+            field.setUncoveredFieldToTrue(selX, selY);
+        }
+
+        if (field.countUncoveredFields()) {
+            won = true;
+        }
+
+        field.present();
+
+        if (lost) {
+            System.out.println("You lost the game");
+            System.exit(0);
+        } else if (won){
+            System.out.println("Congratulations! You won the game");
+            System.exit(0);
+        }
     }
 
     public static void main(String[] args) {
